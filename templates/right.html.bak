@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome web</title>
+</head>
+<body>
+	<center>
+	<div>
+	<form method="get" action="/query/">
+	IP address <input type="text" name="address">
+	<input type="submit" value="检查">
+	</form>
+	</div>
+	<div>
+	{%if alart%}
+	<p><font color="red">{{ alart }}</font></p>
+	{%endif%}
+	</div>
+	<div>
+	<table border="2">
+	<tr>
+		<th>局点</th>
+		<th>IP</th>
+		<th>厂商</th>
+	</tr>
+	<tr>
+	{%if G_address%}
+		<td>{{ G_address }}</td>
+	{%else%}
+		<td>none</td>
+	{%endif%}
+	{%if address%}
+		<td>{{ address }}</td>
+	{%else%}
+		<td>none</td>
+	{% endif %}
+	{%if G_mf %}
+		<td>{{ G_mf }}</td>
+	{% else %}
+		<td>none</td>
+	{% endif %}	
+	</tr>
+	</table>
+	</div>
+	<div>专用设备信息显示如下:<form method="get" action="/change/"><input type="submit" value="切阻断按钮"></form></div>
+	<div>
+	<form method="get" action="/sugon_change/">
+		请输入曙光链路号:<input type="text" name="link">
+		<input type="submit" value="曙光切阻断按钮">
+	</form>
+	</div>
+	<div>
+	<textarea  rows="25" cols="120">
+	当前专用G设备工作状态：{%if result%}{{ result }} {%else%} {{none}} {%endif%}
+	{%if result_sugon%}<p>请查检相关链路是否启用，再决定是否切换！</p>{% endif %}
+	{%for t in text%}
+	{{ t }}
+	{%endfor%}
+	对应专用D设备信息：{%if ip_d_list%}{{ ip_d_list }} {%else%} {{none}} {%endif%}
+	{%if interface.0%}{{interface.0}}{%endif%}
+	{%if port_bandwidth.0%}{{ port_bandwidth.0 }}{%endif%}
+	{%if real_time_rate.0%}{{ real_time_rate.0 }}{% endif%}
+	{%if description.1 %}{{ description.1 }}{%endif%}
+
+	{%if interface.1%}{{interface.1}}{%endif%}
+	{%if port_bandwidth.1%}{{ port_bandwidth.1 }}{%endif%}
+	{%if real_time_rate.1%}{{ real_time_rate.1 }}{% endif%}
+	{%if description.1 %}{{ description.1 }}{%endif%}
+
+	{%if interface.2%}{{interface.2}}{%endif%}
+	{%if port_bandwidth.2%}{{ port_bandwidth.2 }}{%endif%}
+	{%if real_time_rate.2%}{{ real_time_rate.2 }}{% endif%}
+	{%if description.2 %}{{ description.2 }}{%endif%}
+
+	{%if interface.3%}{{interface.3}}{%endif%}
+	{%if port_bandwidth.3%}{{ port_bandwidth.3 }}{%endif%}
+	{%if real_time_rate.3%}{{ real_time_rate.3 }}{% endif%}
+	{%if description.3 %}{{ description.3 }}{%endif%}
+	{%if text2 %}{{ text2 }}{%endif%}
+	</textarea>
+	</div>
+	</center>
+</body>
+</html>

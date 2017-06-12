@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+</head>
+<body bgcolor="#DCDCDC">
+		<table align="right" border="0">
+		<tr>
+		<td>
+		<form method="get" action="/query/">
+		<font size="4"><b>请输入G-IP地址:</b></font>
+		<input type="text" style="height:25px" name="address">
+		<input type="submit" style="height:25px;width:60px;" value="检查">
+		</form>
+		</td>
+		</tr>
+		</table>
+		<br/><br/><br/>
+		<table align="center" border="0">
+		<tr  height="30" align="center">
+		<td>
+		{%if alart%}
+		<font color="red"><b>{{ alart }}</b></font>
+		{%endif%}
+		</td>
+		</tr>
+		</table>
+		<br/>
+		<table align="center" border="1" cellspacing="0" cellpadding="0">
+		<tr align="center" valign="center">
+			<td width="200" height="30">局点</td>
+			<td width="200" height="30">IP</td>
+			<td width="200" height="30">厂商</td>
+		<tr align="center" valign="center">
+			<td width="200" height="30">{{ G_address }}</td>
+			<td width="200" height="30">{{ address }}</td>
+			<td width="200" height="30">{{ G_mf }}</td>
+		</tr>
+		</table>
+		<br/>
+		<table border="0" align="center">
+		<tr align="left">
+		<th>专用设备信息显示如下:</th>
+		</tr>
+		<tr>
+		<td>
+		<textarea  rows="25" cols="120" readonly="readonly">
+		当前专用G设备工作状态：{%if result%}{{ result }} {%else%} {{none}} {%endif%}
+		{%if result_sugon%}<p>请查检相关链路是否启用，再决定是否切换！</p>{% endif %}
+		{%for t in text%}
+		{{ t }}
+		{%endfor%}
+
+		对应专用D设备信息：{%if ip_d_list%}{{ ip_d_list }} {%else%} {{none}} {%endif%}
+		{%if interface.0%}{{interface.0}}{%endif%}
+		{%if port_bandwidth.0%}{{ port_bandwidth.0 }}{%endif%}
+		{%if real_time_rate.0%}{{ real_time_rate.0 }}{% endif%}
+		{%if description.1 %}{{ description.1 }}{%endif%}
+
+		{%if interface.1%}{{interface.1}}{%endif%}
+		{%if port_bandwidth.1%}{{ port_bandwidth.1 }}{%endif%}
+		{%if real_time_rate.1%}{{ real_time_rate.1 }}{% endif%}
+		{%if description.1 %}{{ description.1 }}{%endif%}
+
+		{%if interface.2%}{{interface.2}}{%endif%}
+		{%if port_bandwidth.2%}{{ port_bandwidth.2 }}{%endif%}
+		{%if real_time_rate.2%}{{ real_time_rate.2 }}{% endif%}
+		{%if description.2 %}{{ description.2 }}{%endif%}
+
+		{%if interface.3%}{{interface.3}}{%endif%}
+		{%if port_bandwidth.3%}{{ port_bandwidth.3 }}{%endif%}
+		{%if real_time_rate.3%}{{ real_time_rate.3 }}{% endif%}
+		{%if description.3 %}{{ description.3 }}{%endif%}
+		{%if text2 %}{{ text2 }}{%endif%}
+		</textarea>
+		</td>
+		</tr>
+		<tr height="30" align="right" valign="center">
+		<td>
+		<form method="get" action="/change/"><input type="submit" value="切阻断按钮"></form>
+		</td>
+		</tr>
+		<tr align="right" height="30" valign="center">
+		<td>
+		<form method="get" action="/sugon_change/">
+			请输入曙光链路号:<input type="text" name="link">
+			<input type="submit" value="曙光切阻断按钮">
+		</td>
+		</tr>
+		</table>
+</body>
+</html>
